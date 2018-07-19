@@ -3,7 +3,7 @@ package com.deloittedigital.erdc.time.util;
 import java.time.LocalDate;
 
 /**
- * This is an utility class that provides method for calculating how many weeks are between two dates.
+ * An utility class that provides helper methods for interacting with time periods.
  */
 public class TimeUtil {
 
@@ -12,23 +12,29 @@ public class TimeUtil {
     }
 
     /**
-     * This method is used to return an object of type
+     * Computes the number of weeks between an interval of two dates, with possibly an extra 1-6 days for an incomplete
+     * week.
      *
-     * @param startDate indicates the beginning date of the time interval
-     * @param endDate   represent a later date and indicates the end of the time interval.
-     * @return a WeeksInfo that indicates how many weeks and extra days are between two dates.
+     * @param startDate indicating the beginning date of the time interval. Not {@code null}
+     * @param endDate   a later date, indicating the end of the interval. Not {@code null}, equal or after {@code startDate}
+     *
+     * @return an object which indicates how many weeks (and possibly extra days) are between the two dates
+     *
      * @see WeeksInfo
      */
     public static WeeksInfo weeksBetween(LocalDate startDate, LocalDate endDate) {
         // TODO Implement me
-        throw new UnsupportedOperationException();
+        throw new UnsupportedOperationException("Not yet implemented.");
     }
 
     /**
-     * Immutable class that holds data about number of weeks and extra days between a time interval defined
+     * Immutable class that holds data about number of weeks (and possibly up-to 6 extra days) between a time interval defined
      * by two dates.
+     *
+     * @see TimeUtil#weeksBetween(LocalDate, LocalDate)
      */
     public static final class WeeksInfo {
+
         private final int weeks;
         private final int extraDays;
         private final int totalDays;
@@ -36,13 +42,13 @@ public class TimeUtil {
         private final LocalDate endDate;
 
         /**
-         * Creates an instance of this object using given parameters.
-         * In addition, stores in cache the total number of days, for weeks and extra days data.
+         * Creates an immutable instance of this object using given parameters.
+         * In addition, caches the total number of days, for given no. of weeks and extra days.
          *
-         * @param startDate indicates the beginning date of the time interval.
-         * @param endDate   represent a later date and indicates the end of the time interval.
-         * @param weeks     indicates the number of weeks.
-         * @param extraDays This is the second field.
+         * @param startDate indicates the beginning date of the time interval
+         * @param endDate   a later date, indicating the end of the time interval
+         * @param weeks     indicates the number of weeks
+         * @param extraDays a number between 0-6 accounting for leftover days in an incomplete week
          */
         public WeeksInfo(LocalDate startDate, LocalDate endDate, int weeks, int extraDays) {
             this.weeks = weeks;
@@ -53,45 +59,46 @@ public class TimeUtil {
         }
 
         /**
-         * This method returns number of weeks between a time interval.
+         * Returns number of weeks between a time interval.
          *
          * @return the number of weeks, >= 0
          */
         public int getWeeks() {
-            return weeks;
 
+            return weeks;
         }
 
         /**
-         * This method returns the number of extra days of an incomplete week.
+         * Returns the number of leftover days of (possibly) an incomplete week.
          *
-         * @return the number of extra days, between 0 and 6.
+         * @return the number of leftover days; between 0 and 6.
          */
         public int getExtraDays() {
-            return extraDays;
 
+            return extraDays;
         }
 
         /**
-         * Method for returning the beginning date for calculation.
+         * Returns the beginning date, used for calculation.
          *
-         * @return the local beginning date, not null.
+         * @return the beginning date, not {@code null}.
          */
         public LocalDate getStartDate() {
+
             return startDate;
         }
 
         /**
-         * Method for returning the finish date of the calculation.
+         * Returning the ending date, of the calculation.
          *
-         * @return the local finish date, not null.
+         * @return the local finish date, not {@code null}.
          */
         public LocalDate getEndDate() {
             return endDate;
         }
 
         /**
-         * This method returns the total number of days between two input date parameters.
+         * Returns the number of weeks, and any leftover days, between two input dates <em>as total days</em>.
          *
          * @return the total number of days between two dates.
          */
@@ -101,16 +108,14 @@ public class TimeUtil {
         }
 
         /**
-         * Method that returns a textual representation of a WeekInfo object.
-         * @return the textual representation of a WeekInfo object.
+         * Returns a textual representation of this instance.
+         *
+         * @return the textual representation
          */
         @Override
         public String toString() {
+
             return "Between " + startDate + " and " + endDate + " are " + weeks + " weeks and " + extraDays + " extra days.";
         }
-    }
-
-    public static void main(String[] args) {
-
     }
 }
