@@ -1,7 +1,7 @@
 package com.deloittedigital.erdc.time.util;
 
 import java.time.LocalDate;
-import java.time.Period;
+import java.time.temporal.ChronoUnit;
 import java.util.Objects;
 
 /**
@@ -30,9 +30,7 @@ public class TimeUtil {
             throw new IllegalArgumentException("Start Date cannot be after End Date!");
         }
 
-        final Period between = Period.between(startDate, endDate);
-        final long asDays = (between.toTotalMonths() * 31) + between.getDays()
-                /* Account for exclusion of endDate day in Period: */ +  1;
+        final long asDays = ChronoUnit.DAYS.between(startDate, endDate);
         final long fullWeeks = asDays / 7;
         final long leftoverDays = asDays % 7;
 

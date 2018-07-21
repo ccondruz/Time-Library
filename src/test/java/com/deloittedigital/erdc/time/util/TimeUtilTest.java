@@ -71,7 +71,7 @@ public class TimeUtilTest {
     }
 
     @Test
-    @DisplayName("Correctly determined: 0 week(s) with 5 leftover days, within same week.")
+    @DisplayName("Correctly determined: 0 week(s) with 4 leftover days, within same week.")
     void shouldPassWhenOnlyLeftoverDaysDuringSameWeek() {
         // Given:
         final LocalDate start = LocalDate.of(2018, 7, 9);
@@ -85,13 +85,13 @@ public class TimeUtilTest {
         long actualWeeks = weeks.getWeeks();
         assertEquals(expectedWeeks, actualWeeks);
 
-        long expectedDays = 5;
+        long expectedDays = 4;
         long actualDays = weeks.getExtraDays();
         assertEquals(expectedDays, actualDays);
     }
 
     @Test
-    @DisplayName("Correctly determined: 0 week(s) with 5 leftover days, over consecutive weeks.")
+    @DisplayName("Correctly determined: 0 week(s) with 4 leftover days, over consecutive weeks.")
     void shouldPassWhenOnlyLeftoverDaysDuringConsecutiveWeeks() {
         // Given:
         final LocalDate start = LocalDate.of(2018, 7, 14);
@@ -105,7 +105,7 @@ public class TimeUtilTest {
         long actualWeeks = weeks.getWeeks();
         assertEquals(expectedWeeks, actualWeeks);
 
-        long expectedDays = 5;
+        long expectedDays = 4;
         long actualDays = weeks.getExtraDays();
         assertEquals(expectedDays, actualDays);
     }
@@ -115,7 +115,7 @@ public class TimeUtilTest {
     void shouldPassWhenOneTotalWeekNonconsecutiveWeeksAndZeroLeftoverDays() {
         // Given:
         final LocalDate start = LocalDate.of(2018, 7, 9);
-        final LocalDate end = LocalDate.of(2018, 7, 15);
+        final LocalDate end = LocalDate.of(2018, 7, 16);
 
         // When:
         final TimeUtil.WeeksInfo weeks = TimeUtil.weeksBetween(start, end);
@@ -135,7 +135,7 @@ public class TimeUtilTest {
     void shouldPassWhenOneTotalWeekConsecutiveWeeksAndZeroLeftoverDays() {
         // Given:
         final LocalDate start = LocalDate.of(2018, 7, 10);
-        final LocalDate end = LocalDate.of(2018, 7, 16);
+        final LocalDate end = LocalDate.of(2018, 7, 17);
 
         // When:
         final TimeUtil.WeeksInfo weeks = TimeUtil.weeksBetween(start, end);
@@ -165,7 +165,7 @@ public class TimeUtilTest {
         long actualWeeks = weeks.getWeeks();
         assertEquals(expectedWeeks, actualWeeks);
 
-        long expectedDays = 3;
+        long expectedDays = 2;
         long actualDays = weeks.getExtraDays();
         assertEquals(expectedDays, actualDays);
     }
